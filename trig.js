@@ -130,7 +130,6 @@ function draw_graph(){
     var y_canv = y2canv(y);
 
     ctx.beginPath();
-    ctx.moveTo(x_canv, y_canv);
     ctx.lineWidth = width;
     ctx.strokeStyle = pen_color;
 
