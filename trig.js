@@ -166,7 +166,7 @@ function draw_graph(){
     
     ctx.stroke();
 
-    if (y_down <= 0){
+    if ((y_down <= 0) && (y_up >= 0)){
     y0_canv = 300;
     if ((y_up >= 0) && (y_down<=0)) {
         y0_canv = y2canv(0);
@@ -182,7 +182,7 @@ function draw_graph(){
     ctx.strokeStyle = 'black';
     ctx.stroke();
     }
-    if (x_left <= 0){
+    if ((x_left <= 0) && (x_right >= 0)){
     x0_canv = 400;
     if ((x_right >= 0) && (x_left<=0)) {
         x0_canv = x2canv(0);
