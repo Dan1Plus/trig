@@ -117,11 +117,9 @@ function draw_graph(){
     st = el('func').value;
     pen_color = el("pencolor").value;
     var width = 2;
-    var g = 100;
+    var g = 1500;
     if (abs(x_right) === abs(x_left)){
-    g = (x_right-x_left)*100; }
-    if (abs(x_right) <= abs(x_left)){
-        g = (x_right-x_left)*10000; }
+        g = (x_right-x_left)*100; }
     var dx = (x_right - x_left)/g;
 
     var x = x_left;
@@ -130,11 +128,13 @@ function draw_graph(){
     var y_canv = y2canv(y);
 
     ctx.beginPath();
+    //ctx.moveTo(x_canv, y_canv);
     ctx.lineWidth = width;
     ctx.strokeStyle = pen_color;
 
     var c = 0;
     var a;
+    var y_lim = y2canv(y_down);
 
     for (num = 1; num <g; num++){
         x = Number(x) + dx;
@@ -143,6 +143,7 @@ function draw_graph(){
         y_canv = y2canv(y);
         if (num === 1) {
             a = y;
+            //clear_canv();
         }
         //    if (Math.abs(Math.abs(a)-Math.abs(y)) > 100) {
         //        c = 1;
@@ -151,6 +152,9 @@ function draw_graph(){
             c = 1;
         }
         a = y;
+        if (x_canv <= y_lim) {
+            //ctx.moveTo(x_canv, y_canv);
+        }
         if (c === 0) {
         ctx.lineTo(x_canv, y_canv);
         } else {
@@ -158,6 +162,8 @@ function draw_graph(){
         }
         c = 0;
     }
+
+    
     ctx.stroke();
 
     if (y_down <= 0){
@@ -186,12 +192,14 @@ function draw_graph(){
         x0_canv = 10; 
     }
     ctx.beginPath();
-    ctx.moveTo(x0_canv, 10);
-    ctx.lineTo(x0_canv, 590);
+    ctx.moveTo(x0_canv, 0);
+    ctx.lineTo(x0_canv, 600);
     ctx.lineWidth = width;
     ctx.strokeStyle = 'black';
     ctx.stroke();
-    }
+    } 
+
+    
 }
 
 function canv2x(x_canv){
